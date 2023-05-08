@@ -283,7 +283,7 @@
             cd ..
         else
             echo -e "${RC}Cloning repository...${NC}"
-            git clone https://github.com/Jed556/Apollo.git
+            git clone https://github.com/Jed556/albion-becca.git
         fi
 
         if [[ "$exist" = true ]]; then
