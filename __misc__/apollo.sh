@@ -170,7 +170,7 @@
         file2="apollo.remote"
 
         # Pull bash from remote
-        curl -s -L https://raw.githubusercontent.com/Jed556/Apollo/main/__misc__/apollo.sh -o $tempFolder/$file2
+        curl -s -L https://raw.githubusercontent.com/Jed556/albion-becca/main/__misc__/apollo.sh -o $tempFolder/$file2
 
         # Check for file changes
         compare="$(cmp --s $file1 $tempFolder/$file2; echo $?)"
