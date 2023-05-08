@@ -1,4 +1,6 @@
-const { ActivityType } = require('discord.js'), { randomNum } = require('../../system/functions'),
+const
+    { ActivityType } = require('discord.js'),
+    { randomNum } = require('../../system/functions'),
     DB = require('../../schemas/Status'),
     os = require('os'),
     osUtils = require('os-utils');
@@ -22,8 +24,10 @@ module.exports = {
                 });
 
                 //set defaults if maintenance is null
+
                 if (docs.maintenance == null)
                     await DB.findOneAndUpdate({ _id: client.user.id }, { maintenance: false }, { upsert: true });
+
 
                 if (!client.cmdOk || !client.dbOk || !client.evtOk) {
                     client.user.setStatus("idle");
