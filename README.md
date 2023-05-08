@@ -1,0 +1,1 @@
+An albion utility discord bot based on [**Apollø**](https://github.com/Jed556/Apollo)'s framework for EDGERUNNERS discord server
