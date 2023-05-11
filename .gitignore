@@ -10,8 +10,3 @@ config/client*
 config/distube.json
 config/database.json
 config/heroku.json
-
-# Other
-icon
-art.sh
-HM.bat
