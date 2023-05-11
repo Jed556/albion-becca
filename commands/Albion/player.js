@@ -44,7 +44,7 @@ try {
                     .setColor(emb.color)
                     .setTimestamp()
                     .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
-                    .setDescription(`**${users.length}** results found for **${username}** on **${server}**`)
+                    .setDescription(`**${users.size}** results found for **${username}** on **${server}**`)
                     .addField("Results", users.map((user, i) => `**${i + 1}.** [${user.AllianceName}] [${user.GuildName}] ${user.Name}`).join("\n"))
                 ]
             });
