@@ -1,4 +1,6 @@
-const { yellow, dim } = require('chalk'), { toError, toLog } = require('../../system/functions'),
+const
+    { yellow, dim } = require('chalk'),
+    { toError, toLog } = require('../../system/functions'),
     cooldownDB = require('../../schemas/Cooldowns'),
     statusDB = require('../../schemas/Status'),
     mongoose = require('mongoose'),
@@ -35,7 +37,7 @@ module.exports = {
     name: "ready",
     once: true,
 
-    run: async(client) => {
+    run: async (client) => {
         try {
             await mongoose.connect(Database, {
                 dbName: "Becca",
@@ -50,7 +52,7 @@ module.exports = {
 
             let memArray = []; // Local array for memory
 
-            setInterval(async() => {
+            setInterval(async () => {
                 /* ---------- MEMORY UPDATE ---------- */
                 memArray.push(await getMemoryUsage()); // Used Memory in GB
 
@@ -64,11 +66,11 @@ module.exports = {
 
                 /* --------- COOLDOWN UPDATE --------- */
                 await cooldownDB.deleteMany({
-                        time: { $lte: Date.now() }
-                    }) // Delete cooldowns in database that already finished
+                    time: { $lte: Date.now() }
+                }) // Delete cooldowns in database that already finished
             }, ms(UpdateInt + "s")); // Update every x seconds
         } catch (e) {
-            console.log(toError(e, "Database Error"))
+            console.log(toError(e, "Database Error"));
         }
     }
 }
