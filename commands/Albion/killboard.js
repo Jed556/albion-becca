@@ -43,6 +43,7 @@ try {
 
                 // Log the latest kill data
                 if (data) {
+                    interaction.editReply({ embeds: [log.setDescription(`**${data.length}** killboard events found on **${server}** server`)] });
                     let previousData = [];
                     data.map((kill) => {
                         const alreadyExists = previousData.some((prevKill) => prevKill.EventId === kill.EventId);
@@ -58,10 +59,10 @@ try {
                 }
             } catch (e) {
                 // Handle any errors that may occur
-                console.error(e);
+                toError(e);
                 const errorEmbed = new EmbedBuilder()
                     .setColor(emb.errColor)
-                    .setDescription(`An error occurred while fetching the latest killboard data: ${e.message}`);
+                    .setDescription(`An error occurred while fetching latest ${server} server killboard data:\`\`\`${e}\`\`\``);
                 interaction.followUp({ embeds: [errorEmbed] });
             }
         }
