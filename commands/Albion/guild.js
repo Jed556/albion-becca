@@ -48,7 +48,7 @@ try {
             if (guilds) {
                 embed
                     .setDescription(`**${guilds.length}** results found for **${name}** on **${server}** server`)
-                    .setFields({ name: "Results", value: guilds.map((user, i) => `**${i + 1}.** [${guilds.AllianceName}] ${guilds.GuildName}`).join("\n") })
+                    .setFields({ name: "Results", value: guilds.map((guild, i) => `**${i + 1}.** [${guild.AllianceName}] ${guild.Name}`).join("\n") })
             } else {
                 embed.setDescription(`No results found for **${name}** on **${server}**`)
             }
