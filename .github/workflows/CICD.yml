@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     environment:
       name: Production
-      url: 'https://tiny.one/Apollo-inv'
+      url: 'https://discord.com/api/oauth2/authorize?client_id=1104960590327333016&permissions=70368744177399&scope=applications.commands%20bot'
     steps:
       - name: Deploy
         run: echo Connecting to Google Cloud VM Instance...
