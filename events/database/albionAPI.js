@@ -36,8 +36,7 @@ module.exports = {
             const getKillData = async () => {
                 try {
                     // Fetch the latest kill data from the Albion Killboard API
-                    const response = await axios.get(`${API}/events`, { timeout: 0 });
-                    const data = response.data;
+                    const { data } = await axios.get(`${API}/events`, { timeout: 0 });
 
                     const log = new EmbedBuilder()
                         .setTitle("Killboard")
@@ -55,10 +54,10 @@ module.exports = {
                                 let send = 0;
 
                                 if (kill.Killer.GuildName == "EDGERUNNERS") {
-                                    //console.log(`${kill.Killer.Name} killed ${kill.Victim.Name} using ${kill.Killer.Equipment.MainHand.Type} at ${kill.TimeStamp}`);
+                                    console.log(`${kill.Killer.Name} killed ${kill.Victim.Name} using ${kill.Killer.Equipment.MainHand.Type} at ${kill.TimeStamp}`);
                                     send = log.setDescription(`${kill.Killer.Name} killed ${kill.Victim.Name} using ${kill.Killer.Equipment.MainHand.Type} at ${kill.TimeStamp}`);
                                 } else if (kill.Victim.GuildName == "EDGERUNNERS") {
-                                    //console.log(`${kill.Victim.Name} was killed by ${kill.Killer.Name} using ${kill.Killer.Equipment.MainHand.Type} at ${kill.TimeStamp}`);
+                                    console.log(`${kill.Victim.Name} was killed by ${kill.Killer.Name} using ${kill.Killer.Equipment.MainHand.Type} at ${kill.TimeStamp}`);
                                     send = log.setDescription(`${kill.Victim.Name} was killed by ${kill.Killer.Name} using ${kill.Killer.Equipment.MainHand.Type} at ${kill.TimeStamp}`);
                                 }
 
