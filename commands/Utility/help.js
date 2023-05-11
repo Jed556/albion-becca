@@ -1,5 +1,5 @@
 const
-    { EmbedBuilder, SlashCommandBuilder, ActionRowBuilder, SelectMenuBuilder } = require('discord.js'),
+    { EmbedBuilder, SlashCommandBuilder, ActionRowBuilder, StringSelectMenuBuilder } = require('discord.js'),
     { toError } = require('../../system/functions'),
     emb = require('../../config/embed.json'),
     fs = require('fs');
@@ -19,7 +19,7 @@ try {
             const directories = await fs.readdirSync('commands');
 
             const row = new ActionRowBuilder().addComponents(
-                new SelectMenuBuilder()
+                new StringSelectMenuBuilder()
                     .setCustomId('help-category')
                     .setPlaceholder('Select a category')
                     .addOptions(
