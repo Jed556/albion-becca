@@ -1,14 +1,14 @@
 const
     { EmbedBuilder, SlashCommandBuilder, ActivityType } = require('discord.js'),
     { toError } = require('../../system/functions'),
-    { searchUsers } = require('../../system/albionAPI'),
+    { searchGuilds } = require('../../system/albionAPI'),
     emb = require('../../config/embed.json'),
     axios = require('axios');
 
 try {
     module.exports = {
         data: new SlashCommandBuilder()
-            .setName("search-player")
+            .setName("search-guild")
             .setDescription("Search Albion player username")
             .setDefaultMemberPermissions()
             .setDMPermission(true)
@@ -17,16 +17,16 @@ try {
                 .setDescription("Server to search")
                 .setRequired(true)
                 .addChoices(
-                    { name: "East", value: "east" },
-                    { name: "West", value: "west" },
+                    { name: "East", value: "East" },
+                    { name: "West", value: "West" },
                 )
             )
             .addStringOption(option => option
                 .setName("username")
-                .setDescription("Player's username")
+                .setDescription("Guild's name")
                 .setRequired(true)
             ),
-        help: "/search-player [server] [username]",
+        help: "/search-guild [server] [name]",
         cooldown: 3,
         allowedUIDs: [],
 
@@ -35,7 +35,7 @@ try {
             const
                 { options } = interaction,
                 server = options.getString("server"),
-                username = options.getString("username");
+                name = options.getString("username");
 
             const embed = new EmbedBuilder()
                 .setTitle("Search Results")
@@ -43,14 +43,14 @@ try {
                 .setTimestamp()
                 .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
 
-            users = await searchUsers(server, username, false);
+            guilds = await searchGuilds(server, name, false);
 
-            if (users) {
+            if (guilds) {
                 embed
-                    .setDescription(`**${users.length}** results found for **${username}** on **${server}**`)
-                    .setFields({ name: "Results", value: users.map((user, i) => `**${i + 1}.** [${user.AllianceName}] [${user.GuildName}] ${user.Name}`).join("\n") })
+                    .setDescription(`**${guilds.length}** results found for **${name}** on **${server}** server`)
+                    .setFields({ name: "Results", value: guilds.map((user, i) => `**${i + 1}.** [${guilds.AllianceName}] ${guilds.GuildName}`).join("\n") })
             } else {
-                embed.setDescription(`No results found for **${username}** on **${server}**`)
+                embed.setDescription(`No results found for **${name}** on **${server}**`)
             }
 
             interaction.editReply({
