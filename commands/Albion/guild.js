@@ -1,5 +1,5 @@
 const
-    { EmbedBuilder, SlashCommandBuilder, ActivityType } = require('discord.js'),
+    { EmbedBuilder, SlashCommandBuilder } = require('discord.js'),
     { toError } = require('../../system/functions'),
     { searchGuilds } = require('../../system/albionAPI'),
     emb = require('../../config/embed.json'),
