@@ -2,7 +2,8 @@ const
     { EmbedBuilder, SlashCommandBuilder, ActivityType } = require('discord.js'),
     { toError } = require('../../system/functions'),
     { searchUsers } = require('../../system/albionAPI'),
-    emb = require('../../config/embed.json');
+    emb = require('../../config/embed.json'),
+    axios = require('axios');
 
 try {
     module.exports = {
@@ -31,9 +32,10 @@ try {
 
         run: async (client, interaction) => {
             interaction.deferReply({ ephemeral: true });
-            const { options } = interaction;
-            const server = options.getString("server");
-            const username = options.getString("username");
+            const
+                { options } = interaction,
+                server = options.getString("server"),
+                username = options.getString("username");
 
             users = searchUsers(server, username, false);
             interaction.editReply({

@@ -1,4 +1,6 @@
-const { toError } = require("./functions");
+const
+    { toError } = require("./functions"),
+    axios = require('axios');
 
 /**
  *
