@@ -36,7 +36,6 @@ try {
 
             // Fetch the latest kill data from the Albion Killboard API
             const { data } = await axios.get(`${API}/events`, { timeout: 0 });
-            let previousData = [];
 
             let log = new EmbedBuilder()
                 .setTitle("Killboard")
@@ -46,15 +45,13 @@ try {
 
             // Log the latest kill data
             if (data) {
-                for (const kill of data) {
-                    // Check if the current kill object is already present in previousData
+                let previousData = [];
+                log.setDescription(data.map((kill) => {
                     const alreadyExists = previousData.some((prevKill) => prevKill.EventId === kill.EventId);
-
                     if (!alreadyExists)
-                        log.setDescription(`${kill.Killer.Name} killed ${kill.Victim.Name} using ${kill.Killer.Equipment.MainHand.Type} at ${kill.TimeStamp}`);
-
+                        `**${kill.Killer.Name}** killed **${kill.Victim.Name}** using **${kill.Killer.Equipment.MainHand.Type}** (${kill.TimeStamp})\n`;
                     previousData.push(kill); // Add the current kill object to previousData (idk but API returns some duplicate data)
-                }
+                }));
             } else {
                 log.setColor(emb.errColor).setDescription(`No killboard data found on **${server}**`);
             }
