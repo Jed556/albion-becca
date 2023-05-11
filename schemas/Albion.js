@@ -1,6 +1,18 @@
 const { Schema, model } = require('mongoose');
 
 module.exports = model("API", new Schema({
+    _id: {
+        type: String,
+        required: true
+    },
+    dcGuildId: {
+        type: String,
+        required: true
+    },
+    serverAPI: {
+        type: String,
+        default: "west"
+    },
     guildName: {
         type: String,
         required: true
@@ -13,13 +25,8 @@ module.exports = model("API", new Schema({
         type: Number,
         required: true
     },
-    serverStatChannel: {
+    statusChannel: {
         type: Number,
         required: true
     },
-    serverAPI: {
-        type: String,
-        default: "east"
-    },
-    time: Number
 }), "api");
