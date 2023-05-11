@@ -38,7 +38,7 @@ try {
                 .setColor(emb.color)
                 .setTimestamp()
 
-            interaction.reply({ embed: embed, components: [row], ephemeral: true });
+            interaction.reply({ embeds: [embed], components: [row], ephemeral: true });
         }
     }
 } catch (e) { toError(e, null, 0, false) }
