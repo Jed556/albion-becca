@@ -13,7 +13,7 @@ async function searchUsers(server, name, first) {
     const API = getAPI(server);
     const search = API + `/search?q=${name}`;
 
-    const data = await axios.get(search, { timeout: 0 });
+    const { data } = await axios.get(search, { timeout: 0 });
 
     if (first) return data.players[0];
     else return data.players;
@@ -30,7 +30,7 @@ async function searchGuilds(server, name, first) {
     const API = getAPI(server);
     const search = API + `/search?q=${name}`;
 
-    const data = await axios.get(search, { timeout: 0 });
+    const { data } = await axios.get(search, { timeout: 0 });
 
     if (first) return data.guilds[0];
     else return data.guilds;
