@@ -37,7 +37,7 @@ try {
                 server = options.getString("server"),
                 username = options.getString("username");
 
-            users = searchUsers(server, username, false);
+            users = await searchUsers(server, username, false);
             interaction.editReply({
                 embeds: [new EmbedBuilder()
                     .setTitle("Search Results")
@@ -45,7 +45,7 @@ try {
                     .setTimestamp()
                     .setFooter({ text: client.user.username, iconURL: client.user.displayAvatarURL({ dynamic: true }) })
                     .setDescription(`**${users.length}** results found for **${username}** on **${server}**`)
-                    .addField("Results", users.toJSON().map((user, i) => `**${i + 1}.** [${user.AllianceName}] [${user.GuildName}] ${user.Name}`).join("\n"))
+                    .addField("Results", users.map((user, i) => `**${i + 1}.** [${user.AllianceName}] [${user.GuildName}] ${user.Name}`).join("\n"))
                 ]
             });
         }
