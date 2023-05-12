@@ -45,14 +45,14 @@ try {
                 if (data) {
                     interaction.editReply({ embeds: [log.setDescription(`**${data.length}** killboard events found on **${server}** server`)] });
                     let previousData = [];
-                    data.map((kill) => {
+                    for (const kill of data) {
                         const alreadyExists = previousData.some((prevKill) => prevKill.EventId === kill.EventId);
                         if (!alreadyExists) {
-                            previousData.push(kill); // Add the current kill object to previousData (idk but API returns some duplicate data)
                             log.setDescription(`**${kill.Killer.Name}** killed **${kill.Victim.Name}** using **${kill.Killer.Equipment.MainHand.Type}** (${kill.TimeStamp})`);
                             interaction.channel.send({ embeds: [log] });
+                            previousData.push(kill); // Add the current kill object to previousData (idk but API returns some duplicate data)
                         }
-                    });
+                    };
                 } else {
                     log.setColor(emb.errColor).setDescription(`No killboard data found on **${server}**`);
                     interaction.followUp({ embeds: [log] });
